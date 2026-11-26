@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VoxAI · The voice of your reputation</title>
+<meta name="description" content="More 5-star Google reviews, a reply to every one, and a motivated team — for restaurants, cafés and bars. Book a free 10-minute call.">
+<link rel="icon" href="logo-sm.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800;900&display=swap" rel="stylesheet">
+
+<script>
+/* =====================================================================
+   ✏️  EDIT EVERYTHING HERE
+   All texts, links, prices and cards live in this block.
+   Change a value, save, refresh. Nothing else needs to be touched.
+   ===================================================================== */
+const SITE = {
+  calendly: "https://calendly.com/support-vox-ai/30min",        // ← your Calendly link
+  loom: "https://www.loom.com/share/c2d3e4803a8544f8beb0350fc96e5cf7",          // ← your Loom share link
+  loomThumbnail: "founder.jpg",   // optional: your own image file, e.g. "founder.jpg". Empty = Loom's thumbnail is used automatically
+  email: "support.vox.ai@gmail.com",
+  logo: "logo.png",
+  backgroundVideo: "", // optional loop video file, e.g. "hero.mp4". Empty = built-in animation
+  defaultLang: "en",
+
+  en: {
+    nav: ["Home", "Services", "FAQ"],
+    cta: "Get started now",
+    tagline: "The voice of your reputation",
+    scroll: "Scroll",
+    h1a: "More 5-star reviews.",
+    h1b: "Zero extra work.",
+    sub: "Reviews, replies and team motivation for restaurants, cafés and bars — on autopilot.",
+    bookText: "Let's start now · free 10-minute call",
+    bookBtn: "Book a call",
+    cardsTitle: "Why venues need it",
+    cards: [
+      { src: "Atipico Duomo", sub: "VoxAI client · Milan", text: "“This completely changes the digital race among restaurants.”", name: "Errico", role: "Owner", badge: "★★★★★" },
+      { src: "BrightLocal", sub: "Consumer Review Survey 2026", text: "97% of people read reviews before choosing a local business.", name: "97%", role: "read reviews first" },
+      { src: "BrightLocal", sub: "Consumer Review Survey 2026", text: "89% of consumers expect owners to reply to reviews.", name: "89%", role: "expect a reply" },
+      { src: "GatherUp", sub: "Restaurant review data", text: "53% of diners rarely or never leave a review. Happy guests stay silent.", name: "53%", role: "stay silent" },
+      { src: "SOCi", sub: "Review response study", text: "Restaurants reply to only 13% of their reviews.", name: "13%", role: "get a reply" }
+    ],
+    founderKicker: "Founder",
+    founderTitle: "Listen from the founder",
+    founderSub: "A short message from Mert Atabey on why we built VoxAI and how it works for your venue.",
+    founderName: "Mert Atabey",
+    founderRole: "Founder, VoxAI",
+    founderPlay: "Watch the video",
+    servicesKicker: "Services",
+    servicesTitle: "One system that turns reviews into growth.",
+    servicesSub: "Start with one service. Add more anytime. Cancel with one click.",
+    services: [
+      { icon: "◎", name: "NFC Chips", desc: "One tap on the table opens your Google review page. No app, no QR code, no searching.", price: "€5", per: "per chip", tag: "" },
+      { icon: "◈", name: "Monthly Report", desc: "Every month our AI reads all your Google reviews and emails you what guests love and what to fix.", price: "€5", per: "/month", tag: "" },
+      { icon: "⚡", name: "Lightning Vox", desc: "A personal AI reply to every new Google review. Guests feel heard, your profile stays active.", price: "€25", per: "/month", tag: "Coming soon" },
+      { icon: "✦", name: "Staff Incentive", desc: "We count every positive mention of each staff member. On the 1st you get the ranking — you decide the bonus.", price: "€50", per: "/month", tag: "" }
+    ],
+    faqKicker: "FAQ",
+    faqTitle: "Questions, answered.",
+    faq: [
+      { q: "How long does setup take?", a: "About 5 minutes. We register your venue, and your first report arrives at the start of next month." },
+      { q: "Do my guests need an app?", a: "No. The NFC chip opens your Google review page directly on any modern phone." },
+      { q: "Can I cancel anytime?", a: "Yes. Try it for a month and cancel with one click. No contracts." },
+      { q: "Do you write or buy reviews?", a: "Never. Every review comes from your real guests. We make it easy for them to leave one, and help you understand and answer them." },
+      { q: "Which languages do you support?", a: "Reports and emails are sent in your language: English, Italian, Turkish, Spanish, French or German." },
+      { q: "What happens on the 10-minute call?", a: "We look at your Google profile together, show you a real report and pick the services that fit your venue." }
+    ],
+    finalTitle: "Let's fill your venue with 5-star reviews.",
+    finalSub: "One 10-minute call. No commitment.",
+    footer: "© 2026 VoxAI · Milan"
+  },
+
+  it: {
+    nav: ["Home", "Servizi", "FAQ"],
+    cta: "Inizia ora",
+    tagline: "La voce della tua reputazione",
+    scroll: "Scorri",
+    h1a: "Più recensioni a 5 stelle.",
+    h1b: "Zero lavoro in più.",
+    sub: "Recensioni, risposte e motivazione del team per ristoranti, caffè e bar — in automatico.",
+    bookText: "Iniziamo ora · call gratuita di 10 minuti",
+    bookBtn: "Prenota",
+    cardsTitle: "Perché serve al tuo locale",
+    cards: [
+      { src: "Atipico Duomo", sub: "Cliente VoxAI · Milano", text: "“Cambia completamente la corsa digitale tra i ristoranti.”", name: "Errico", role: "Titolare", badge: "★★★★★" },
+      { src: "BrightLocal", sub: "Consumer Review Survey 2026", text: "Il 97% delle persone legge le recensioni prima di scegliere un locale.", name: "97%", role: "legge prima le recensioni" },
+      { src: "BrightLocal", sub: "Consumer Review Survey 2026", text: "L'89% dei clienti si aspetta che il titolare risponda alle recensioni.", name: "89%", role: "si aspetta una risposta" },
+      { src: "GatherUp", sub: "Dati recensioni ristoranti", text: "Il 53% dei clienti lascia raramente o mai una recensione. I clienti felici restano in silenzio.", name: "53%", role: "resta in silenzio" },
+      { src: "SOCi", sub: "Studio sulle risposte", text: "I ristoranti rispondono solo al 13% delle recensioni.", name: "13%", role: "riceve una risposta" }
+    ],
+    founderKicker: "Fondatore",
+    founderTitle: "Ascolta il fondatore",
+    founderSub: "Un breve messaggio di Mert Atabey: perché abbiamo creato VoxAI e come funziona per il tuo locale.",
+    founderName: "Mert Atabey",
+    founderRole: "Fondatore, VoxAI",
+    founderPlay: "Guarda il video",
+    servicesKicker: "Servizi",
+    servicesTitle: "Un unico sistema che trasforma le recensioni in crescita.",
+    servicesSub: "Inizia con un servizio. Aggiungine altri quando vuoi. Disdici con un clic.",
+    services: [
+      { icon: "◎", name: "Chip NFC", desc: "Un tocco sul tavolo apre la tua pagina recensioni Google. Niente app, niente QR, niente ricerche.", price: "€5", per: "a chip", tag: "" },
+      { icon: "◈", name: "Report Mensile", desc: "Ogni mese la nostra AI legge tutte le tue recensioni e ti scrive cosa amano i clienti e cosa migliorare.", price: "€5", per: "/mese", tag: "" },
+      { icon: "⚡", name: "Lightning Vox", desc: "Una risposta AI personalizzata a ogni nuova recensione. I clienti si sentono ascoltati, il profilo resta attivo.", price: "€25", per: "/mese", tag: "In arrivo" },
+      { icon: "✦", name: "Staff Incentive", desc: "Contiamo ogni menzione positiva di ogni membro dello staff. Il 1° del mese ricevi la classifica — il bonus lo decidi tu.", price: "€50", per: "/mese", tag: "" }
+    ],
+    faqKicker: "FAQ",
+    faqTitle: "Domande e risposte.",
+    faq: [
+      { q: "Quanto dura l'attivazione?", a: "Circa 5 minuti. Registriamo il tuo locale e il primo report arriva all'inizio del mese successivo." },
+      { q: "I clienti devono scaricare un'app?", a: "No. Il chip NFC apre direttamente la tua pagina recensioni Google su qualsiasi smartphone recente." },
+      { q: "Posso disdire quando voglio?", a: "Sì. Provalo per un mese e disdici con un clic. Nessun contratto." },
+      { q: "Scrivete o comprate recensioni?", a: "Mai. Ogni recensione arriva dai tuoi veri clienti. Noi rendiamo facile lasciarla e ti aiutiamo a capirle e a rispondere." },
+      { q: "In che lingue lavorate?", a: "Report ed email arrivano nella tua lingua: italiano, inglese, turco, spagnolo, francese o tedesco." },
+      { q: "Cosa succede nella call di 10 minuti?", a: "Guardiamo insieme il tuo profilo Google, ti mostriamo un report reale e scegliamo i servizi giusti per il tuo locale." }
+    ],
+    finalTitle: "Riempiamo il tuo locale di recensioni a 5 stelle.",
+    finalSub: "Una call di 10 minuti. Nessun impegno.",
+    footer: "© 2026 VoxAI · Milano"
+  }
+};
+/* ===================== end of editable block ===================== */
+</script>
+
+<style>
+  /* VOICE: confident, clean, brand-led
+     IDEA: the VoxAI logo poster — giant wordmark with the emblem rising through it
+     PICTURE: the emblem itself, floating over soft moving blue light and voice waves
+     COLOUR and TYPE: off-white, ink black, VoxAI blue gradient #1a4a9c→#2fa3e6 · Poppins
+     LAYOUT: poster hero, then glass bubbles: pitch + cards, founder video, services, FAQ */
+  :root{
+    --bg:#f6f7f9;
+    --ink:#141518;
+    --muted:#5b6270;
+    --blue-1:#1a4a9c;
+    --blue-2:#2fa3e6;
+    --grad:linear-gradient(135deg,var(--blue-1),var(--blue-2));
+    --glass:rgba(255,255,255,.58);
+    --glass-2:rgba(255,255,255,.82);
+    --line:rgba(26,74,156,.12);
+    --line-2:rgba(26,74,156,.24);
+    --blur:blur(18px) saturate(160%);
+    --shadow:0 1px 0 rgba(255,255,255,.9) inset,0 12px 40px rgba(26,74,156,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;min-width:0}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  body{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:clip}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  :focus-visible{outline:2px solid var(--blue-2);outline-offset:3px;border-radius:8px}
+
+  .glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);box-shadow:var(--shadow)}
+
+  /* background */
+  .bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .bg canvas,.bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  main,header,footer{position:relative;z-index:2}
+
+  /* nav */
+  header{position:fixed;top:0;left:0;right:0;z-index:20;padding:20px 36px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;transition:background .3s,box-shadow .3s}
+  header.scrolled{background:rgba(246,247,249,.7);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);box-shadow:0 1px 0 var(--line)}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:-.02em;justify-self:start}
+  .logo img{width:38px;height:38px;object-fit:contain}
+  nav.menu{display:flex;gap:4px;padding:6px;border-radius:999px}
+  nav.menu a{padding:9px 22px;border-radius:999px;font-size:14px;font-weight:500;color:#2a2f3a;transition:background .25s,color .25s}
+  nav.menu a:hover{background:rgba(26,74,156,.07)}
+  nav.menu a.active{background:var(--ink);color:#fff}
+  .right{display:flex;align-items:center;gap:10px;justify-self:end}
+  .lang{position:relative}
+  .lang>button{font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px;padding:10px 12px;border-radius:999px;min-height:44px}
+  .lang>button:hover{background:rgba(26,74,156,.07)}
+  .lang ul{position:absolute;right:0;top:calc(100% + 6px);list-style:none;border-radius:14px;padding:6px;min-width:130px;display:none}
+  .lang.open ul{display:block}
+  .lang li button{width:100%;text-align:left;padding:9px 12px;border-radius:10px;font-size:13px}
+  .lang li button:hover{background:rgba(26,74,156,.08)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:12px 24px;border-radius:999px;font-size:14px;font-weight:500;white-space:nowrap;transition:transform .25s,box-shadow .25s,filter .25s}
+  .btn.primary{background:var(--grad);color:#fff;box-shadow:0 8px 24px rgba(47,163,230,.35),inset 0 1px 0 rgba(255,255,255,.35)}
+  .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
+
+  /* hero poster */
+  .hero{position:relative;height:92svh;min-height:560px;display:flex;flex-direction:column;align-items:center;padding-top:clamp(110px,16vh,170px);overflow:hidden;text-align:center}
+  .tagline{font-weight:300;color:var(--blue-1);font-size:clamp(11px,1.55vw,22px);letter-spacing:.52em;text-transform:uppercase;padding-left:.52em;white-space:nowrap}
+  .word{font-weight:900;color:var(--ink);font-size:clamp(84px,18vw,280px);line-height:.86;letter-spacing:-.035em;margin-top:.04em;display:flex;gap:.18em;position:relative;z-index:1}
+  .word span{display:inline-block;opacity:0;transform:translateY(40px);animation:up 1s cubic-bezier(.2,.7,.2,1) forwards}
+  .word span:nth-child(2){animation-delay:.12s}
+  .emblem{position:relative;z-index:2;width:clamp(300px,46vw,640px);margin-top:calc(-1 * clamp(26px,5vw,80px));opacity:0;animation:emb 1.4s .35s cubic-bezier(.2,.7,.2,1) forwards}
+  .emblem img{width:100%;display:block;animation:float 6s ease-in-out 1.8s infinite;filter:drop-shadow(0 30px 50px rgba(26,74,156,.25))}
+  .emblem::before{content:"";position:absolute;inset:12% 12%;border-radius:50%;background:radial-gradient(circle,rgba(47,163,230,.35),transparent 65%);filter:blur(30px);z-index:-1;animation:glow 4s ease-in-out infinite}
+  .scroll-cue{position:absolute;bottom:28px;right:36px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;color:var(--muted);padding:10px 16px 12px;border-radius:999px}
+  .scroll-cue i{width:2px;height:22px;border-radius:2px;background:var(--grad);animation:cue 1.8s ease-in-out infinite}
+  @keyframes up{to{opacity:1;transform:none}}
+  @keyframes emb{from{opacity:0;transform:translateY(80px) scale(.92)}to{opacity:1;transform:none}}
+  @keyframes float{50%{transform:translateY(-14px) rotate(-1.5deg)}}
+  @keyframes glow{50%{opacity:.55;transform:scale(1.08)}}
+  @keyframes cue{0%{transform:scaleY(.2);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(.2);transform-origin:bottom}}
+
+  /* pitch */
+  section.block{padding:clamp(24px,3vw,40px) max(5vw,18px);max-width:1340px;margin:0 auto}
+  .pitch{text-align:center;display:flex;flex-direction:column;align-items:center}
+  h2{font-weight:600;letter-spacing:-.035em;line-height:1.05;font-size:clamp(32px,4.8vw,60px);text-wrap:balance}
+  h2 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{margin-top:16px;color:var(--muted);font-size:17px;line-height:1.55;max-width:560px}
+  .kicker{display:inline-block;padding:7px 16px;border-radius:999px;font-size:13px;font-weight:500;color:var(--blue-1);margin-bottom:14px}
+
+  .book{margin-top:32px;display:flex;align-items:center;gap:12px;padding:6px 6px 6px 22px;border-radius:999px;width:min(500px,100%);transition:transform .25s,box-shadow .25s}
+  .book:hover{transform:translateY(-2px);box-shadow:var(--shadow),0 16px 40px rgba(47,163,230,.22)}
+  .book .dot{width:9px;height:9px;border-radius:50%;background:#22c27a;box-shadow:0 0 0 4px rgba(34,194,122,.18);flex:none;animation:pulse 2s infinite}
+  .book>span{flex:1;text-align:left;font-size:14.5px;color:#2a2f3a}
+  @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(34,194,122,0)}}
+
+  /* cards */
+  .cards-wrap{width:100%;margin-top:44px;text-align:left}
+  .cards-head{display:flex;align-items:center;justify-content:space-between;padding:0 4px 16px}
+  .cards-head h3{font-size:15px;font-weight:500;display:flex;align-items:center;gap:10px}
+  .cards-head h3 i{font-style:normal;font-size:30px;line-height:0;transform:translateY(7px);color:var(--blue-2)}
+  .arrows{display:flex;gap:8px}
+  .arrows button{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:17px}
+  .arrows button:hover{background:var(--glass-2)}
+  .track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:6px 4px 34px;margin-bottom:-26px}
+  .track::-webkit-scrollbar{display:none}
+  .card{scroll-snap-align:start;flex:0 0 calc((100% - 48px)/4);min-width:250px;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:18px;min-height:230px;transition:transform .35s,background .35s}
+  .card:hover{transform:translateY(-4px);background:var(--glass-2)}
+  .src{display:flex;align-items:center;gap:10px}
+  .src .ic{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:12px;font-weight:600;color:#fff;background:var(--grad)}
+  .src b{display:block;font-size:13px;font-weight:600}
+  .src small{display:block;font-size:11px;color:var(--muted)}
+  .card p{font-size:15.5px;line-height:1.5;color:#22262f;flex:1}
+  .who{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .who .n{display:flex;align-items:center;gap:10px}
+  .who .av{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:600;color:#fff;background:var(--grad)}
+  .who b{display:block;font-size:14px;font-weight:600}
+  .who small{display:block;font-size:12px;color:var(--muted)}
+  .stars{color:#f2b630;font-size:13px;letter-spacing:1px}
+  .card.stat .who .av{width:auto;height:auto;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:30px;font-weight:600;letter-spacing:-.03em}
+  .dots{display:flex;justify-content:center;gap:6px;margin-top:8px}
+  .dots i{width:6px;height:6px;border-radius:99px;background:rgba(26,74,156,.2);transition:width .3s,background .3s}
+  .dots i.on{width:22px;background:var(--blue-1)}
+
+  /* founder */
+  .founder{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:48px;align-items:center}
+  .video{position:relative;display:block;aspect-ratio:16/9;border-radius:28px;overflow:hidden;padding:10px}
+  .video .frame{position:absolute;inset:10px;border-radius:20px;overflow:hidden;background:
+      radial-gradient(60% 80% at 75% 20%,rgba(47,163,230,.55),transparent 60%),
+      radial-gradient(60% 80% at 15% 90%,rgba(26,74,156,.65),transparent 60%),#0f2850}
+  .video .frame img.thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s}
+  .video .frame img.mark{position:absolute;right:-6%;bottom:-14%;width:52%;opacity:.22;filter:brightness(3) saturate(0)}
+  .video:hover .frame img.thumb{transform:scale(1.04)}
+  .video .play{position:absolute;inset:0;margin:auto;width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.28);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .35s}
+  .video .play::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(255,255,255,.4);animation:ring 2.4s ease-out infinite}
+  .video .play svg{width:30px;height:30px;margin-left:5px}
+  .video:hover .play{transform:scale(1.08)}
+  .video .tag{position:absolute;left:28px;bottom:26px;display:flex;align-items:center;gap:12px;color:#fff;padding:8px 18px 8px 8px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .video .tag .av{width:38px;height:38px;border-radius:50%;background:#fff;display:grid;place-items:center;overflow:hidden}
+  .video .tag .av img{width:30px}
+  .video .tag b{display:block;font-size:14px;font-weight:600}
+  .video .tag small{display:block;font-size:12px;opacity:.85}
+  .video .label{position:absolute;right:28px;top:26px;color:#fff;font-size:13px;font-weight:500;padding:8px 14px;border-radius:999px;background:rgba(0,0,0,.25);backdrop-filter:blur(8px)}
+  .video.has-thumb,.video.has-thumb{aspect-ratio:1874/906!important}
+  .video.has-thumb .tag,.video.has-thumb .mark{display:none}
+  .video.has-thumb .frame::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(10,25,60,.25),transparent 45%)}
+  @keyframes ring{from{transform:scale(.9);opacity:1}to{transform:scale(1.35);opacity:0}}
+
+  /* services */
+  .head-left{max-width:820px}
+  .grid{margin-top:32px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  .svc{border-radius:26px;padding:26px;display:flex;flex-direction:column;gap:14px;min-height:340px;position:relative;overflow:hidden;transition:transform .35s,background .35s}
+  .svc:hover{transform:translateY(-6px);background:var(--glass-2)}
+  .svc::before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;right:-100px;top:-100px;background:radial-gradient(circle,rgba(47,163,230,.22),transparent 70%);transition:transform .6s}
+  .svc:hover::before{transform:scale(1.35)}
+  .svc .ico{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:20px;color:#fff;background:var(--grad);box-shadow:0 8px 20px rgba(47,163,230,.3)}
+  .svc h4{font-size:20px;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .svc .tag{font-size:11px;font-weight:500;padding:4px 10px;border-radius:999px;background:rgba(242,182,48,.15);border:1px solid rgba(242,182,48,.45);color:#9a6a00}
+  .svc p{color:var(--muted);font-size:14.5px;line-height:1.6;flex:1}
+  .svc .price{display:flex;align-items:baseline;gap:6px;padding-top:16px;border-top:1px solid var(--line)}
+  .svc .price b{font-size:36px;font-weight:600;letter-spacing:-.04em}
+  .svc .price small{color:var(--muted);font-size:13px}
+
+  /* faq */
+  .faq{margin-top:30px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+  .qa{border-radius:22px;overflow:hidden;transition:background .3s}
+  .qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 24px;text-align:left;font-size:16px;font-weight:500;min-height:44px}
+  .qa .plus{width:32px;height:32px;border-radius:50%;flex:none;display:grid;place-items:center;border:1px solid var(--line-2);color:var(--blue-1);transition:transform .35s,background .35s,color .35s}
+  .qa .a{max-height:0;overflow:hidden;transition:max-height .45s ease}
+  .qa .a p{padding:0 24px 22px;color:var(--muted);line-height:1.65;font-size:14.5px}
+  .qa.open{background:var(--glass-2)}
+  .qa.open .plus{transform:rotate(45deg);background:var(--grad);color:#fff;border-color:transparent}
+
+  /* final */
+  .final .panel{border-radius:36px;padding:64px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden}
+  .final .panel img.mark{position:absolute;width:420px;right:-120px;bottom:-160px;opacity:.12;pointer-events:none}
+
+  footer{padding:16px max(5vw,18px) 36px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:13px;max-width:1340px;margin:0 auto}
+  footer .logo{font-size:16px}
+  footer .logo img{width:26px;height:26px}
+  footer a.mail:hover{color:var(--blue-1)}
+
+  /* reveal */
+  .rise{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .rise.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .rise,.word span,.emblem{opacity:1;transform:none;animation:none;transition:none}
+    .emblem img,.emblem::before,.scroll-cue i,.video .play::before,.book .dot{animation:none}
+  }
+
+  @media (max-width:1100px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{flex-basis:calc((100% - 32px)/3)}.founder{grid-template-columns:1fr;gap:24px}}
+  @media (max-width:860px){
+    header{padding:14px 16px;grid-template-columns:auto 1fr auto}
+    nav.menu{justify-self:center}
+    nav.menu a{padding:8px 12px;font-size:13px}
+    .right .btn.top{padding:10px 16px;font-size:13px}
+    .faq{grid-template-columns:1fr}
+    .card{flex-basis:80%}
+  }
+  @media (max-width:600px){
+    nav.menu{display:none}
+    header{grid-template-columns:auto 1fr}
+    .logo span{display:none}
+    .grid{grid-template-columns:1fr}
+    .hero{padding-top:120px}
+    .emblem{width:82vw;margin-top:-14px}
+    .book>span{font-size:13px;line-height:1.3}
+    .hero{height:auto;min-height:0;padding-bottom:40px}
+    .scroll-cue{display:none}
+    .video{aspect-ratio:4/3}
+    .video .play{width:72px;height:72px}
+    .video .tag{left:18px;bottom:18px}
+    .video .label{display:none}
+    section.block{padding:24px 18px}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true"><canvas id="sky"></canvas></div>
+
+<header id="top">
+  <a class="logo" href="#home" aria-label="VoxAI home"><img class="L" alt=""><span>VoxAI</span></a>
+  <nav class="menu glass">
+    <a href="#home" class="active" data-nav="0"></a>
+    <a href="#services" data-nav="1"></a>
+    <a href="#faq" data-nav="2"></a>
+  </nav>
+  <div class="right">
+    <div class="lang" id="lang">
+      <button type="button" aria-haspopup="true"><span id="langLabel">EN</span><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+      <ul class="glass">
+        <li><button type="button" data-lang="en">English</button></li>
+        <li><button type="button" data-lang="it">Italiano</button></li>
+      </ul>
+    </div>
+    <a class="btn primary top cal" target="_blank" rel="noopener" data-t="cta"></a>
+  </div>
+</header>
+
+<main>
+  <!-- HOME: brand poster -->
+  <section class="hero" id="home">
+    <p class="tagline" data-t="tagline"></p>
+    <h1 class="word" aria-label="VoxAI"><span>VOX</span><span>AI</span></h1>
+    <div class="emblem"><img class="L" alt="VoxAI logo"></div>
+    <a class="scroll-cue glass" href="#pitch"><span data-t="scroll"></span><i></i></a>
+  </section>
+
+  <!-- PITCH + CALENDLY + CARDS -->
+  <section class="block pitch" id="pitch">
+    <h2 class="rise"><span data-t="h1a"></span><br><span class="g" data-t="h1b"></span></h2>
+    <p class="lead rise" data-t="sub"></p>
+    <a class="book glass rise cal" target="_blank" rel="noopener">
+      <i class="dot"></i>
+      <span data-t="bookText"></span>
+      <b class="btn primary"><span data-t="bookBtn"></span> ›</b>
+    </a>
+
+    <div class="cards-wrap rise">
+      <div class="cards-head">
+        <h3><i>❝</i><span data-t="cardsTitle"></span></h3>
+        <div class="arrows">
+          <button type="button" class="glass" id="prev" aria-label="Previous">‹</button>
+          <button type="button" class="glass" id="next" aria-label="Next">›</button>
+        </div>
+      </div>
+      <div class="track" id="track" tabindex="0"></div>
+      <div class="dots" id="dots"></div>
+    </div>
+  </section>
+
+  <!-- FOUNDER / LOOM -->
+  <section class="block founder" id="founder">
+    <div class="rise">
+      <span class="kicker glass" data-t="founderKicker"></span>
+      <h2 data-t="founderTitle"></h2>
+      <p class="lead" data-t="founderSub"></p>
+    </div>
+    <a class="video glass rise" id="loom" target="_blank" rel="noopener">
+      <div class="frame">
+        <img class="mark L" alt="">
+        <img class="thumb" id="loomThumb" alt="" hidden>
+      </div>
+      <span class="label" data-t="founderPlay"></span>
+      <span class="play"><svg viewBox="0 0 24 24"><path d="M6 4.5v15l13-7.5z" fill="#fff"/></svg></span>
+      <span class="tag"><span class="av"><img class="L" alt=""></span><span><b data-t="founderName"></b><small data-t="founderRole"></small></span></span>
+    </a>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="block" id="services">
+    <div class="head-left">
+      <span class="kicker glass rise" data-t="servicesKicker"></span>
+      <h2 class="rise" data-t="servicesTitle"></h2>
+      <p class="lead rise" data-t="servicesSub"></p>
+    </div>
+    <div class="grid" id="svcGrid"></div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block" id="faq">
+    <span class="kicker glass rise" data-t="faqKicker"></span>
+    <h2 class="rise" data-t="faqTitle"></h2>
+    <div class="faq" id="faqList"></div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="block final">
+    <div class="panel glass rise">
+      <img class="mark L" alt="">
+      <h2 data-t="finalTitle"></h2>
+      <p class="lead" data-t="finalSub"></p>
+      <a class="book glass cal" target="_blank" rel="noopener">
+        <i class="dot"></i>
+        <span data-t="bookText"></span>
+        <b class="btn primary"><span data-t="bookBtn"></span> ›</b>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a class="logo" href="#home"><img class="L" alt=""><span>VoxAI</span></a>
+  <span data-t="footer"></span>
+  <a class="mail" id="mail"></a>
+</footer>
+
+<script>
+{
+let lang=SITE.defaultLang;
+try{const s=localStorage.getItem("voxLang");if(s&&SITE[s])lang=s;}catch(e){}
+
+/* static wiring */
+document.querySelectorAll("img.L").forEach(i=>i.src=SITE.logo);
+document.querySelectorAll(".cal").forEach(a=>a.href=SITE.calendly);
+const mail=document.getElementById("mail");mail.textContent=SITE.email;mail.href="mailto:"+SITE.email;
+const loom=document.getElementById("loom");loom.href=SITE.loom;
+const thumb=document.getElementById("loomThumb");
+const loomId=(SITE.loom.match(/loom\.com\/(?:share|embed)\/([a-f0-9]{16,})/i)||[])[1];
+const thumbSrc=SITE.loomThumbnail||(loomId?`https://cdn.loom.com/sessions/thumbnails/${loomId}-with-play.gif`:"");
+if(thumbSrc){thumb.onload=()=>{thumb.hidden=false;loom.classList.add("has-thumb")};thumb.onerror=()=>thumb.remove();thumb.src=thumbSrc;}
+
+const esc=s=>String(s);
+
+function render(){
+  const T=SITE[lang];
+  document.documentElement.lang=lang;
+  document.getElementById("langLabel").textContent=lang.toUpperCase();
+  document.querySelectorAll("[data-t]").forEach(el=>{el.innerHTML=T[el.dataset.t]??""});
+  document.querySelectorAll("[data-nav]").forEach(el=>{el.textContent=T.nav[+el.dataset.nav]});
+
+  document.getElementById("track").innerHTML=T.cards.map(c=>{
+    const stat=!c.badge;
+    return `<article class="card glass ${stat?"stat":""}">
+      <div class="src"><span class="ic">${esc(c.src[0])}</span><div><b>${esc(c.src)}</b><small>${esc(c.sub)}</small></div></div>
+      <p>${esc(c.text)}</p>
+      <div class="who"><div class="n"><span class="av">${stat?esc(c.name):esc(c.name[0])}</span><div>${stat?"":`<b>${esc(c.name)}</b>`}<small>${esc(c.role)}</small></div></div>${c.badge?`<span class="stars">${c.badge}</span>`:""}</div>
+    </article>`}).join("");
+  document.getElementById("dots").innerHTML=T.cards.map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("");
+
+  document.getElementById("svcGrid").innerHTML=T.services.map(s=>`
+    <article class="svc glass rise">
+      <span class="ico">${s.icon}</span>
+      <h4>${esc(s.name)}${s.tag?`<span class="tag">${esc(s.tag)}</span>`:""}</h4>
+      <p>${esc(s.desc)}</p>
+      <div class="price"><b>${esc(s.price)}</b><small>${esc(s.per)}</small></div>
+    </article>`).join("");
+
+  document.getElementById("faqList").innerHTML=T.faq.map(f=>`
+    <div class="qa glass rise"><button type="button" aria-expanded="false"><span>${esc(f.q)}</span><span class="plus">+</span></button><div class="a"><p>${esc(f.a)}</p></div></div>`).join("");
+  document.querySelectorAll(".qa button").forEach(b=>b.onclick=()=>{
+    const qa=b.parentElement,a=qa.querySelector(".a"),open=qa.classList.toggle("open");
+    b.setAttribute("aria-expanded",open);a.style.maxHeight=open?a.scrollHeight+"px":0;
+  });
+  observe();
+}
+
+/* language */
+const langEl=document.getElementById("lang");
+langEl.querySelector(":scope>button").onclick=e=>{e.stopPropagation();langEl.classList.toggle("open")};
+document.addEventListener("click",()=>langEl.classList.remove("open"));
+langEl.querySelectorAll("[data-lang]").forEach(b=>b.onclick=()=>{lang=b.dataset.lang;try{localStorage.setItem("voxLang",lang)}catch(e){};render()});
+
+/* slider */
+const track=document.getElementById("track");
+const step=()=>{const c=track.querySelector(".card");return c?c.offsetWidth+16:300};
+document.getElementById("next").onclick=()=>track.scrollBy({left:step(),behavior:"smooth"});
+document.getElementById("prev").onclick=()=>track.scrollBy({left:-step(),behavior:"smooth"});
+track.addEventListener("keydown",e=>{if(e.key==="ArrowRight")track.scrollBy({left:step(),behavior:"smooth"});if(e.key==="ArrowLeft")track.scrollBy({left:-step(),behavior:"smooth"})});
+track.addEventListener("scroll",()=>{
+  const i=Math.round(track.scrollLeft/step());
+  document.querySelectorAll("#dots i").forEach((d,k)=>d.classList.toggle("on",k===i));
+},{passive:true});
+
+/* reveal + nav state */
+let revealer;
+function observe(){
+  revealer&&revealer.disconnect();
+  revealer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");revealer.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll(".rise:not(.in)").forEach(el=>revealer.observe(el));
+}
+const header=document.getElementById("top");
+const navLinks=[...document.querySelectorAll("[data-nav]")];
+const sec=[["home",0],["pitch",0],["founder",0],["services",1],["faq",2]];
+addEventListener("scroll",()=>{
+  header.classList.toggle("scrolled",scrollY>30);
+  let cur=0;sec.forEach(([id,n])=>{const s=document.getElementById(id);if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=n});
+  navLinks.forEach((a,i)=>a.classList.toggle("active",i===cur));
+},{passive:true});
+
+render();
+
+/* background: optional video, else soft moving light + voice waves */
+const bg=document.querySelector(".bg");
+if(SITE.backgroundVideo){
+  const v=document.createElement("video");
+  Object.assign(v,{src:SITE.backgroundVideo,autoplay:true,muted:true,loop:true,playsInline:true});
+  v.style.opacity=.5;bg.prepend(v);
+}
+const cv=document.getElementById("sky"),ctx=cv.getContext("2d");
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let W,H,t=0,mx=0,my=0,sparks=[];
+const blobs=[
+  {x:.18,y:.25,r:.42,c:"47,163,230",a:.20,sp:.0007,ph:0},
+  {x:.82,y:.30,r:.38,c:"26,74,156",a:.14,sp:.0009,ph:2},
+  {x:.55,y:.85,r:.50,c:"47,163,230",a:.16,sp:.0006,ph:4},
+  {x:.10,y:.85,r:.30,c:"120,190,255",a:.16,sp:.0011,ph:1}
+];
+function size(){const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0)}
+addEventListener("resize",size);size();
+addEventListener("pointermove",e=>{mx=e.clientX/W-.5;my=e.clientY/H-.5},{passive:true});
+function frame(){
+  t++;
+  ctx.fillStyle="#f6f7f9";ctx.fillRect(0,0,W,H);
+  for(const b of blobs){
+    const x=(b.x+Math.sin(t*b.sp*6+b.ph)*.06)*W+mx*40,y=(b.y+Math.cos(t*b.sp*5+b.ph)*.06)*H+my*30,r=b.r*Math.max(W,H);
+    const g=ctx.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,`rgba(${b.c},${b.a})`);g.addColorStop(1,`rgba(${b.c},0)`);
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  }
+  const cy=H*.62;
+  for(let k=0;k<4;k++){
+    ctx.beginPath();
+    for(let x=-10;x<=W+10;x+=6){
+      const env=Math.sin(Math.PI*Math.max(0,Math.min(1,x/W)));
+      const y=cy+Math.sin(x*.005+t*.011+k*1.4)*Math.sin(t*.004+k)*70*env+Math.sin(x*.016-t*.018+k)*12*env;
+      x<0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    const lg=ctx.createLinearGradient(0,0,W,0);
+    lg.addColorStop(0,"rgba(26,74,156,0)");lg.addColorStop(.5,k%2?"rgba(26,74,156,.22)":"rgba(47,163,230,.30)");lg.addColorStop(1,"rgba(26,74,156,0)");
+    ctx.strokeStyle=lg;ctx.lineWidth=k?1:1.8;ctx.stroke();
+  }
+  if(!reduce&&Math.random()<.03)sparks.push({x:W*(.1+Math.random()*.8),y:H*.95,v:.3+Math.random()*.45,s:8+Math.random()*8,w:Math.random()*6.28,a:0});
+  sparks=sparks.filter(s=>s.y>H*.08);
+  ctx.font="16px Poppins, sans-serif";
+  for(const s of sparks){
+    s.y-=s.v;s.w+=.02;s.a=Math.min(s.a+.012,1);
+    const life=(s.y-H*.08)/(H*.87);
+    ctx.globalAlpha=s.a*Math.min(life*1.6,1)*.5;
+    ctx.fillStyle=s.s>12?"#2fa3e6":"#f2b630";
+    ctx.font=s.s+"px Poppins, sans-serif";ctx.fillText("★",s.x+Math.sin(s.w)*10,s.y);
+  }
+  ctx.globalAlpha=1;
+  if(!reduce)requestAnimationFrame(frame);
+}
+frame();
+}
+</script>
+</body>
+</html>
